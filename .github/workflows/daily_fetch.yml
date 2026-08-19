@@ -1,0 +1,33 @@
+name: Daily data fetch
+
+on:
+  schedule:
+    - cron: "30 21 * * 1-5"  # 21:30 UTC = after US market close, Mon-Fri
+  workflow_dispatch: {}       # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run fetch
+        run: python run_daily.py
+
+      - name: Commit updated history
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/history.csv
+          git diff --cached --quiet || git commit -m "Daily data snapshot"
+          git push
