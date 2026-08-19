@@ -7,8 +7,6 @@ import csv
 import os
 import traceback
 
-from fetchers import fetch_all
-
 HISTORY_PATH = os.path.join(os.path.dirname(__file__), "data", "history.csv")
 DEBUG_PATH = os.path.join(os.path.dirname(__file__), "data", "debug_error.txt")
 
@@ -24,6 +22,7 @@ FIELDS = [
 def main():
     os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
     try:
+        from fetchers import fetch_all
         snapshot = fetch_all()
     except Exception:
         with open(DEBUG_PATH, "w") as f:
