@@ -5,10 +5,12 @@ data/history.csv. The commit + push happens in the workflow file, not here.
 
 import csv
 import os
+import traceback
 
 from fetchers import fetch_all
 
 HISTORY_PATH = os.path.join(os.path.dirname(__file__), "data", "history.csv")
+DEBUG_PATH = os.path.join(os.path.dirname(__file__), "data", "debug_error.txt")
 
 FIELDS = [
     "date",
@@ -20,8 +22,14 @@ FIELDS = [
 
 
 def main():
-    snapshot = fetch_all()
     os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
+    try:
+        snapshot = fetch_all()
+    except Exception:
+        with open(DEBUG_PATH, "w") as f:
+            f.write(traceback.format_exc())
+        raise
+
     file_exists = os.path.isfile(HISTORY_PATH)
     with open(HISTORY_PATH, "a", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
@@ -29,6 +37,9 @@ def main():
             writer.writeheader()
         writer.writerow(snapshot)
     print("Snapshot written:", snapshot)
+    # clear any stale error log from a previous failed run
+    if os.path.isfile(DEBUG_PATH):
+        os.remove(DEBUG_PATH)
 
 
 if __name__ == "__main__":
