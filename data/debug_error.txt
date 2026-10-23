@@ -11,25 +11,25 @@ Traceback (most recent call last):
   File "/home/runner/work/market-bottom-dashboard/market-bottom-dashboard/fetchers.py", line 26, in get_sp500_tickers
     tables = pd.read_html(url)
              ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 1226, in read_html
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 1234, in read_html
     return _parse(
            ^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 979, in _parse
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 978, in _parse
     tables = p.parse_tables()
              ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 237, in parse_tables
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 228, in parse_tables
     tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
                                 ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 789, in _build_doc
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/html.py", line 788, in _build_doc
     with get_handle(self.io, "r", storage_options=self.storage_options) as f:
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/common.py", line 776, in get_handle
     ioargs = _get_filepath_or_buffer(
              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/common.py", line 405, in _get_filepath_or_buffer
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/common.py", line 407, in _get_filepath_or_buffer
     with urlopen(req_info) as req:
          ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/common.py", line 282, in urlopen
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/io/common.py", line 284, in urlopen
     return urllib.request.urlopen(*args, **kwargs)  # noqa: TID251
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 216, in urlopen
